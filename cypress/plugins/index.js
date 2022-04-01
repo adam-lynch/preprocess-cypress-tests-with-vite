@@ -16,7 +16,8 @@ const vite = require("vite");
 const cache = {};
 
 module.exports = (on, config) => {
-  on("file:preprocessor", async ({ filePath, outputPath, shouldWatch }) => {
+  on("file:preprocessor", async (file) => {
+    const { filePath, outputPath, shouldWatch } = file;
     if (cache[filePath]) {
       return cache[filePath];
     }
